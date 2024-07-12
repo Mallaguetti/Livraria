@@ -1,7 +1,7 @@
 package com.example.livraria.controller;
 
-import com.example.livraria.domain.Livro;
-import com.example.livraria.repository.LivroRepository;
+import com.example.livraria.domain.Emprestimo;
+import com.example.livraria.repository.EmprestimoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,23 +9,23 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/livros")
-public class LivroController {
+@RequestMapping("/emprestimos")
+public class EmprestimoController {
 
     @Autowired
-    private LivroRepository repository;
+    private EmprestimoRepository repository;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
-    public Livro saveLivro(@RequestBody Livro data){
+    public Emprestimo saveEmprestimo(@RequestBody Emprestimo data){
         return repository.save(data);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<Livro> getAll(){
+    public List<Emprestimo> getAll(){
 
-        List<Livro> livroList= repository.findAll();
+        List<Emprestimo> emprestimoList= repository.findAll();
         return repository.findAll();
     }
 }
