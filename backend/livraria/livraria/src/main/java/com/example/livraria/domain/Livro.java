@@ -1,6 +1,7 @@
-package com.example.livraria.livro;
+package com.example.livraria.domain;
 
 
+import com.example.livraria.controller.dto.LivroRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -17,17 +18,12 @@ import lombok.NoArgsConstructor;
 public class Livro {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String image;
-    private Integer price;
-    //Colocar as verdadeiras areas da tabela!!!!!!
+    private Long id_Livro;
+    private String numSerie;
+    @ManyToOne
+    @JoinColumn(name = "obra")//Esta relacionada a tabela Obra
+    private Obra obra;
 
-    public Livro(LivroRequestDTO data){
-        this.image= data.image();
-        this.price= data.price();
-        this.title= data.title();
-    }
 }
 
 
