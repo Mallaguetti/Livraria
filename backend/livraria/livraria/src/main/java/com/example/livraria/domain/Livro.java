@@ -24,6 +24,17 @@ public class Livro {
     @JoinColumn(name = "obra")//Esta relacionada a tabela Obra
     private Obra obra;
 
+
+    public void setNumSerie(String numSerie) {
+        this.numSerie = numSerie;
+    }
+
+
+    public void setObra(Obra obra) {
+        this.obra = obra;
+    }
+
+
 }
 
 

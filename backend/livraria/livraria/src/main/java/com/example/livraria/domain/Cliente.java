@@ -4,14 +4,12 @@ package com.example.livraria.domain;
 import com.example.livraria.controller.dto.LivroRequestDTO;
 import java.util.Set;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name= "clientes")
 @Entity(name= "clientes")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -23,6 +21,14 @@ public class Cliente {
     private String nome;
     @OneToMany(mappedBy = "cliente")
     private Set<Emprestimo> emprestimos;
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }
 
 

@@ -28,4 +28,28 @@ public class ObraController {
         List<Obra> obraList= repository.findAll();
         return repository.findAll();
     }
+
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/{id}")
+    public Obra getById(@PathVariable Long id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Obra não encontrada"));
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping("/{id}")
+    public Obra updateObra(@PathVariable Long id, @RequestBody Obra data) {
+        Obra obra = repository.findById(id).orElseThrow(() -> new RuntimeException("Obra não encontrada"));
+
+        obra.setNome(data.getNome());
+        obra.setAutor(data.getAutor());
+
+        return repository.save(obra);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @DeleteMapping("/{id}")
+    public void deleteObra(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 }

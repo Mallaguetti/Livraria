@@ -28,4 +28,24 @@ public class EmprestimoController {
         List<Emprestimo> emprestimoList= repository.findAll();
         return repository.findAll();
     }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping("/{id}")
+    public Emprestimo updateEmprestimo(@PathVariable Long id, @RequestBody Emprestimo data) {
+        Emprestimo emprestimo = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Emprestimo não encontrado"));
+
+        emprestimo.setDataDevolucao(data.getDataDevolucao());
+        emprestimo.setCliente(data.getCliente());
+        emprestimo.setLivro(data.getLivro());
+        // Ajuste os demais campos conforme necessário
+
+        return repository.save(emprestimo);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @DeleteMapping("/{id}")
+    public void deleteEmprestimo(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 }
