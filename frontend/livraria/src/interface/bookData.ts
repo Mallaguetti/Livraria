@@ -1,5 +1,5 @@
 export interface bookData{
-    id: number,
+    id?: number,
     title: string,
     autor: string
     //image: string

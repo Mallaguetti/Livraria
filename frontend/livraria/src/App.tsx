@@ -1,11 +1,18 @@
-//import { useState } from 'react'
 import './App.css';
+import { useState } from 'react'
 import { Card } from './components/card/card';
 import { useBookData } from './hooks/useBookData';
 import { bookData } from './interface/bookData';
+import { CreateModal } from './components/create-modal/create-modal';
 
 function App() {
   const { data } = useBookData();
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleOpenModal = () => {
+    setIsModalOpen(prev => !prev)
+  }
+
   return (
     <div className="container">
       <h1>Biblioteca</h1>
@@ -18,6 +25,8 @@ function App() {
           />
         )}
       </div>
+      {isModalOpen && <CreateModal/>}
+      <button onClick={handleOpenModal}>novo</button>
     </div>
   )
 };
